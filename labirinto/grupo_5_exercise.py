@@ -98,7 +98,7 @@ def compute_path(my_maze, my_agent):
 
 if __name__ == "__main__":
     # cria environment
-    my_maze = maze(1000, 1000)
+    my_maze = maze(25, 25)
     # lê labirinto do exercício
     my_maze.CreateMaze(theme=COLOR.light, x=9, y=20)
     # cria agente
