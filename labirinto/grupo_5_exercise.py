@@ -32,9 +32,11 @@ def compute_path(my_maze, my_agent):
     # cria célula com posição do Agente
     start_cell = my_agent.position
 
+    end_cell = my_maze._goal
+
     # cria Pilhas para conter células exploradas e que devem ser exploradas, respectivamente
-    explored_cells = [start_cell]
-    cells_to_be_explored = [start_cell]
+    explored_cells = [end_cell]
+    cells_to_be_explored = [end_cell]
 
     # cria dicionário com as células exploradas filha e pai, sendo a chave e o valor, respectivamente
     path_prof = {}
@@ -46,7 +48,7 @@ def compute_path(my_maze, my_agent):
         currCell = cells_to_be_explored.pop()
 
         # condição de parada caso a célula seja o resultado do labirinto
-        if currCell == my_maze._goal:
+        if currCell == start_cell:
             break
 
         # loop para checar as células que devem ser exploradas a partir da célula guardada
@@ -86,17 +88,8 @@ def compute_path(my_maze, my_agent):
     # caso não encontre uma saída
     if len(cells_to_be_explored) == 0:
         raise Exception("Maze exit not found")
-
-    # cria dicionário que irá conter o caminho resultado, que conecta o agente com o fim do labirinto
-    path_final = {}
-
-    # inverte as células encontradas do fim do labirinto até o agente
-    cell = my_maze._goal
-    while cell != start_cell:
-        path_final[path_prof[cell]] = cell
-        cell = path_prof[cell]
-
-    return path_final
+    
+    return path_prof
 
 
 if __name__ == "__main__":
