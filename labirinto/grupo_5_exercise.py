@@ -34,6 +34,10 @@ def compute_path(my_maze, my_agent):
 
     end_cell = my_maze._goal
 
+    # caso o agente esteja na saída do labirinto
+    if start_cell == end_cell:
+        return ""
+
     # cria Pilhas para conter células exploradas e que devem ser exploradas, respectivamente
     explored_cells = [end_cell]
     cells_to_be_explored = [end_cell]
@@ -94,7 +98,7 @@ def compute_path(my_maze, my_agent):
 
 if __name__ == "__main__":
     # cria environment
-    my_maze = maze(25, 25)
+    my_maze = maze(1000, 1000)
     # lê labirinto do exercício
     my_maze.CreateMaze(theme=COLOR.light, x=9, y=20)
     # cria agente
