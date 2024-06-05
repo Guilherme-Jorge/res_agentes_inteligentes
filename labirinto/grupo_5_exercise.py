@@ -19,6 +19,16 @@ def compute_path(my_maze, my_agent):
     Guilherme Ferreira Jorge      - RA: 22007283
     Marcos Antônio Valério Filho  - RA: 22006092
     """
+    # validações de entreda
+    if my_maze is None:
+        raise ValueError("Maze is null")
+
+    if my_agent is None:
+        raise ValueError("Agent is null")
+    
+    if my_maze != my_agent._parentMaze:
+        raise ValueError("Agent is not from the passed maze")
+
     # cria célula com posição do Agente
     start_cell = my_agent.position
 
@@ -72,6 +82,10 @@ def compute_path(my_maze, my_agent):
 
                 # adiciona na chave da célula filha a célula pai
                 path_prof[childCell] = currCell
+    
+    # caso não encontre uma saída
+    if len(cells_to_be_explored) == 0:
+        raise Exception("Maze exit not found")
 
     # cria dicionário que irá conter o caminho resultado, que conecta o agente com o fim do labirinto
     path_final = {}
